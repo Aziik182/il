@@ -138,6 +138,44 @@
             background: var(--white); margin: 5px 0;
             transition: all 0.3s;
         }
+        .price-card {
+    background: var(--white);
+    border: 1px solid var(--cloud);
+    border-radius: 14px;
+    padding: 1.8rem;
+    text-align: center;
+}
+
+.price-amount {
+    font-family: var(--font-display);
+    font-size: 2rem;
+    color: var(--navy);
+    margin: 0.5rem 0 1rem;
+}
+
+.btn-pay {
+    display: inline-block;
+    background: var(--navy);
+    color: #fff;
+    text-decoration: none;
+    padding: 0.7rem 1.4rem;
+    border-radius: 8px;
+    font-weight: 700;
+    font-size: 0.9rem;
+    transition: all .25s;
+}
+
+.btn-pay:hover {
+    background: var(--navy-light);
+    transform: translateY(-1px);
+}
+
+.price-disclaimer {
+    font-size: 0.7rem;
+    color: var(--slate);
+    margin-top: 0.6rem;
+    line-height: 1.4;
+}
 
         /* ─── HERO ─── */
         .hero {
@@ -768,120 +806,104 @@
     </div>
 </section>
     <!-- ─── HONORARIOS ─── -->
-<section class="services" id="honorarios" style="background: var(--cloud);">
-    <div class="services-inner">
-        <div class="section-label">Honorarios</div>
-        <h2 class="section-title">Contrate su servicio de forma rápida y segura</h2>
-        <p class="section-desc">
-            Puede pagar en línea los honorarios profesionales. Los valores indicados
-            corresponden exclusivamente a honorarios legales y no incluyen gastos de
-            notaría, impuestos, conservador u otros costos externos.
-        </p>
+<!-- ─── HONORARIOS ─── -->
+<section class="services" id="honorarios" style="background:#f8fafc;">
+  <div class="services-inner">
+    <div class="section-label">Honorarios</div>
+    <h2 class="section-title">Pago online de honorarios profesionales</h2>
+    <p class="section-desc">
+      Puede pagar sus honorarios de forma segura mediante Mercado Pago.
+      Los valores indicados corresponden exclusivamente a honorarios profesionales.
+    </p>
 
-        <div class="services-grid">
+    <div class="services-grid">
 
-            <!-- Empresa en un Día -->
-            <div class="service-card fade-in">
-                <div class="service-icon green-bg">🏢</div>
-                <h3>Empresa en un Día</h3>
-                <p>Constitución de SpA, LTDA o EIRL mediante plataforma Empresa en un Día. Incluye asesoría y revisión legal.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <script src="https://www.mercadopago.cl/integrations/v1/web-payment-checkout.js"
-                    data-preference-id="61177382-9a5e0e9a-d01a-4ca4-b578-45f67b974fbe"
-                    data-source="button"></script>
-                </div>
-
-                <span class="service-tag">Honorarios</span>
-            </div>
-
-            <!-- Constitución tradicional -->
-            <div class="service-card fade-in">
-                <div class="service-icon gold-bg">📜</div>
-                <h3>Constitución Tradicional</h3>
-                <p>Redacción de estatutos y gestión legal de constitución por método tradicional.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <a href="https://mpago.la/1yMV3Um" class="btn-secondary" target="_blank">
-                        Pagar honorarios
-                    </a>
-                </div>
-
-                <span class="service-tag">Honorarios</span>
-            </div>
-
-            <!-- Revisión simple -->
-            <div class="service-card fade-in">
-                <div class="service-icon blue">📄</div>
-                <h3>Revisión de Contrato Simple</h3>
-                <p>Revisión jurídica de contrato estándar de compraventa, arriendo o similar.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <a href="https://mpago.la/15HMDsX" class="btn-secondary" target="_blank">
-                        Pagar honorarios
-                    </a>
-                </div>
-
-                <span class="service-tag">Honorarios</span>
-            </div>
-
-            <!-- Revisión PRO -->
-            <div class="service-card fade-in">
-                <div class="service-icon steel-bg">🧠</div>
-                <h3>Revisión de Contrato PRO</h3>
-                <p>Análisis jurídico avanzado con observaciones y recomendaciones.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <a href="https://mpago.la/21LosFx" class="btn-secondary" target="_blank">
-                        Pagar honorarios
-                    </a>
-                </div>
-
-                <span class="service-tag">Honorarios</span>
-            </div>
-
-            <!-- Estudio de títulos -->
-            <div class="service-card fade-in">
-                <div class="service-icon blue">🏡</div>
-                <h3>Estudio de Títulos Simple</h3>
-                <p>Revisión jurídica de antecedentes registrales del inmueble.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <a href="https://mpago.la/21fRAtK" class="btn-secondary" target="_blank">
-                        Pagar honorarios
-                    </a>
-                </div>
-
-                <span class="service-tag">Desde</span>
-            </div>
-
-            <!-- Posesión efectiva -->
-            <div class="service-card fade-in">
-                <div class="service-icon gold-bg">📑</div>
-                <h3>Posesión Efectiva</h3>
-                <p>Gestión completa del trámite ante el Registro Civil.</p>
-
-                <div style="margin-top:1.2rem;">
-                    <a href="https://mpago.la/1KYFxDQ" class="btn-secondary" target="_blank">
-                        Pagar honorarios
-                    </a>
-                </div>
-
-                <span class="service-tag">Honorarios</span>
-            </div>
-
+      <!-- Estudio de títulos -->
+      <div class="price-card">
+        <h3>Estudio de Títulos Simple</h3>
+        <div class="price-amount">$150.000</div>
+        <a href="https://mpago.la/21fRAtK" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          Honorarios profesionales. No incluye gastos notariales ni conservatorios.
         </div>
+      </div>
 
-        <!-- DISCLAIMER FUERTE -->
-        <div style="margin-top:2.5rem; font-size:0.8rem; color:var(--steel); background:#fff; padding:1.2rem; border-radius:10px; border:1px solid rgba(11,29,58,0.08);">
-            <strong>Importante:</strong> Los pagos realizados en esta sección corresponden
-            exclusivamente a honorarios profesionales del abogado. No incluyen gastos de
-            notaría, Conservador de Bienes Raíces, Registro Civil, impuestos, certificados
-            ni costos de terceros. Dichos gastos serán informados y cotizados separadamente
-            cuando corresponda. La contratación del servicio implica la aceptación de estas condiciones.
+      <!-- Posesión efectiva -->
+      <div class="price-card">
+        <h3>Posesión Efectiva</h3>
+        <div class="price-amount">$250.000</div>
+        <a href="https://mpago.la/1KYFxDQ" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          Honorarios profesionales. Gastos del Registro Civil o Conservador se pagan aparte.
         </div>
+      </div>
+
+      <!-- Poderes -->
+      <div class="price-card">
+        <h3>Redacción de Poder</h3>
+        <div class="price-amount">$50.000</div>
+        <a href="https://mpago.la/2pFUwKY" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          No incluye firma en notaría ni derechos notariales.
+        </div>
+      </div>
+
+      <!-- Contrato PRO -->
+      <div class="price-card">
+        <h3>Revisión de Contrato PRO</h3>
+        <div class="price-amount">$120.000</div>
+        <a href="https://mpago.la/21LosFx" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          Honorarios por revisión jurídica. No incluye redacción completa salvo pacto.
+        </div>
+      </div>
+
+      <!-- Constitución tradicional -->
+      <div class="price-card">
+        <h3>Constitución Tradicional</h3>
+        <div class="price-amount">$150.000</div>
+        <a href="https://mpago.la/21LosFx" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          No incluye costos de notaría, publicación ni Conservador.
+        </div>
+      </div>
+
+      <!-- Empresa en un día -->
+      <div class="price-card">
+        <h3>Empresa en un Día</h3>
+        <div class="price-amount">$80.000</div>
+        <a href="https://mpago.la/278FvGc" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          Honorarios por constitución vía sistema Empresa en un Día.
+        </div>
+      </div>
+
+      <!-- Contrato simple -->
+      <div class="price-card">
+        <h3>Revisión de Contrato Simple</h3>
+        <div class="price-amount">$80.000</div>
+        <a href="https://mpago.la/15HMDsX" target="_blank" class="btn-pay">
+          Pagar honorarios
+        </a>
+        <div class="price-disclaimer">
+          Revisión básica del documento proporcionado por el cliente.
+        </div>
+      </div>
 
     </div>
+  </div>
 </section>
 <!-- ─── WHY US ─── -->
 <section class="why" id="nosotros">
