@@ -311,6 +311,92 @@
         #faqSearch { padding-left: 2.2rem; font-size: .85rem; border-radius: .5rem; }
         #faqSearch:focus { border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,.12); outline: none; }
         #faqNoResults { display: none; font-size: .84rem; color: #94a3b8; padding: 1.25rem; text-align: center; border: 1px dashed #e2e8f0; border-radius: .5rem; }
+
+        /* ════════════════════════════════════════════
+           CSS4 — Modernización
+           ════════════════════════════════════════════ */
+
+        /* ── @property: custom properties tipadas ─── */
+        @property --card-glow {
+            syntax: '<color>';
+            inherits: false;
+            initial-value: transparent;
+        }
+        @property --progress-fill {
+            syntax: '<percentage>';
+            inherits: false;
+            initial-value: 0%;
+        }
+
+        /* ── text-wrap: títulos equilibrados ─────── */
+        .hero-heading, .section-heading         { text-wrap: balance; }
+        .card-body h3, .diff-card h3            { text-wrap: balance; }
+        .accordion-button                        { text-wrap: balance; }
+        .diff-card p, .card-body p, .nota-asesor p,
+        .accordion-body                          { text-wrap: pretty; }
+
+        /* ── color-mix(): hover states con OKLCH ──── */
+        .btn-wa:hover, .btn-wa:focus {
+            background-color: color-mix(in oklch, #25d366 78%, black);
+            border-color:     color-mix(in oklch, #25d366 78%, black);
+            color: #fff;
+        }
+        .btn-wa:active {
+            background-color: color-mix(in oklch, #25d366 62%, black);
+            border-color:     color-mix(in oklch, #25d366 62%, black);
+            color: #fff;
+        }
+        .btn-primary:hover {
+            background-color: color-mix(in oklch, #1d4ed8 80%, black);
+            border-color:     color-mix(in oklch, #1d4ed8 80%, black);
+        }
+        .btn-outline-primary:hover {
+            background-color: color-mix(in oklch, #1d4ed8 15%, white);
+        }
+
+        /* ── @property: card glow animado como tipo <color> ── */
+        .card-lift {
+            --card-glow: transparent;
+            box-shadow: 0 1px 3px rgba(0,0,0,.05), 0 0 0 1px var(--card-glow) !important;
+            transition:
+                transform .28s cubic-bezier(.16,1,.3,1),
+                box-shadow .28s,
+                --card-glow .28s !important;
+        }
+        .card-lift:hover {
+            --card-glow: rgba(29,78,216,.2);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,.09), 0 0 0 1.5px var(--card-glow) !important;
+        }
+
+        /* ── @property: barra de progreso con variable tipada ── */
+        #reading-progress {
+            width: var(--progress-fill);
+            transition: --progress-fill .08s linear;
+        }
+
+        /* ── :has() — acordeón: borde azul cuando está abierto ── */
+        .accordion-item:has(.accordion-button:not(.collapsed)) {
+            border-color: color-mix(in oklch, #1d4ed8 50%, transparent) !important;
+            box-shadow: 0 0 0 3px color-mix(in oklch, #1d4ed8 10%, transparent);
+        }
+
+        /* ── :has() — navbar: sombra cuando el menú mobile está abierto ── */
+        .navbar:has(.navbar-collapse.show) {
+            box-shadow: 0 4px 20px rgba(0,0,0,.09) !important;
+        }
+
+        /* ── :has() — diff-card: ring de foco accesible ── */
+        .diff-card:has(:focus-visible) {
+            outline: 2px solid #1d4ed8;
+            outline-offset: 3px;
+        }
+
+        /* ── font-variant-numeric: dígitos tabulares ── */
+        .step-num, tbody td, .badge, #backToTop { font-variant-numeric: tabular-nums; }
+
+        /* ── overscroll: sin chain-scroll al llegar al extremo ── */
+        html { overscroll-behavior-y: contain; }
     </style>
 </head>
 <body>
@@ -992,7 +1078,8 @@
         if (!bar) return;
         window.addEventListener('scroll', () => {
             const max = document.documentElement.scrollHeight - innerHeight;
-            bar.style.width = `${Math.min((scrollY / max) * 100, 100)}%`;
+            const pct = Math.min((scrollY / max) * 100, 100);
+            bar.style.setProperty('--progress-fill', `${pct}%`);
         }, { passive: true });
     };
 
