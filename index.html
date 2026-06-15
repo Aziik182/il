@@ -108,6 +108,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
 
     <style>
         :root {
@@ -281,6 +282,35 @@
             .mobile-cta-bar { display: block; }
             .wa-float { display: none !important; }
         }
+
+        /* ── Font Awesome: tamaño en contenedores ─── */
+        .svc-icon i  { font-size: 1.05rem; line-height: 1; }
+        .diff-icon i { font-size: 1.15rem; line-height: 1; }
+
+        /* ── Back to top ─────────────────────────── */
+        #backToTop {
+            position: fixed; bottom: 5rem; right: 1.5rem; z-index: 996;
+            width: 40px; height: 40px; border-radius: 50%;
+            background: #1d4ed8; color: #fff; border: none;
+            display: flex; align-items: center; justify-content: center;
+            opacity: 0; transform: translateY(10px);
+            transition: opacity .3s cubic-bezier(.16,1,.3,1), transform .3s cubic-bezier(.16,1,.3,1);
+            cursor: pointer; box-shadow: 0 4px 16px rgba(29,78,216,.3);
+        }
+        #backToTop.visible { opacity: 1; transform: translateY(0); }
+        #backToTop:hover   { background: #1e40af; transform: translateY(-2px) !important; }
+        @media (max-width: 991px) { #backToTop { display: none; } }
+
+        /* ── FAQ search ─────────────────────────── */
+        .faq-search-wrap { position: relative; margin-bottom: 1.25rem; }
+        .faq-search-wrap .fa-magnifying-glass {
+            position: absolute; left: .85rem; top: 50%;
+            transform: translateY(-50%); color: #94a3b8;
+            pointer-events: none; font-size: .8rem;
+        }
+        #faqSearch { padding-left: 2.2rem; font-size: .85rem; border-radius: .5rem; }
+        #faqSearch:focus { border-color: #1d4ed8; box-shadow: 0 0 0 3px rgba(29,78,216,.12); outline: none; }
+        #faqNoResults { display: none; font-size: .84rem; color: #94a3b8; padding: 1.25rem; text-align: center; border: 1px dashed #e2e8f0; border-radius: .5rem; }
     </style>
 </head>
 <body>
@@ -321,7 +351,7 @@
                 </p>
                 <div class="d-flex flex-wrap gap-3 hero-in hero-in-4">
                     <a href="https://wa.me/56974510669?text=Hola%2C%20quiero%20asesor%C3%ADa%20para%20constituir%20una%20empresa" class="btn btn-wa px-4 py-2" target="_blank" rel="noopener">
-                        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="me-2" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.8-6.36-2.147l-.444-.347-3.09 1.036 1.036-3.09-.347-.444A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                        <i class="fa-brands fa-whatsapp me-2" aria-hidden="true"></i>
                         Solicitar asesoría
                     </a>
                     <a href="#servicios" class="btn btn-outline-secondary px-4 py-2">Ver servicios</a>
@@ -335,7 +365,7 @@
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item d-flex align-items-center gap-3">
                             <div class="svc-icon" style="background:#dbeafe">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/></svg>
+                                <i class="fa-regular fa-file-lines" aria-hidden="true" style="color:#1d4ed8"></i>
                             </div>
                             <div>
                                 <div class="fw-semibold" style="font-size:.88rem">Constitución de Sociedades</div>
@@ -344,7 +374,7 @@
                         </li>
                         <li class="list-group-item d-flex align-items-center gap-3">
                             <div class="svc-icon" style="background:#fef3c7">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                                <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#b45309"></i>
                             </div>
                             <div>
                                 <div class="fw-semibold" style="font-size:.88rem">Asesoría Inmobiliaria</div>
@@ -353,7 +383,7 @@
                         </li>
                         <li class="list-group-item d-flex align-items-center gap-3">
                             <div class="svc-icon" style="background:#dcfce7">
-                                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+                                <i class="fa-solid fa-users" aria-hidden="true" style="color:#16a34a"></i>
                             </div>
                             <div>
                                 <div class="fw-semibold" style="font-size:.88rem">Trámites Sucesorios</div>
@@ -410,7 +440,7 @@
                 <ul class="list-unstyled m-0">
                     <li class="d-flex align-items-start gap-3 mb-3">
                         <div class="svc-icon flex-shrink-0" style="background:#dbeafe">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <i class="fa-solid fa-check" aria-hidden="true" style="color:#1d4ed8"></i>
                         </div>
                         <div>
                             <div class="fw-semibold text-dark" style="font-size:.87rem">Abogado habilitado en Chile</div>
@@ -419,7 +449,7 @@
                     </li>
                     <li class="d-flex align-items-start gap-3 mb-3">
                         <div class="svc-icon flex-shrink-0" style="background:#dcfce7">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <i class="fa-solid fa-check" aria-hidden="true" style="color:#16a34a"></i>
                         </div>
                         <div>
                             <div class="fw-semibold text-dark" style="font-size:.87rem">Gestión 100% digital</div>
@@ -428,7 +458,7 @@
                     </li>
                     <li class="d-flex align-items-start gap-3 mb-3">
                         <div class="svc-icon flex-shrink-0" style="background:#fef3c7">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <i class="fa-solid fa-check" aria-hidden="true" style="color:#b45309"></i>
                         </div>
                         <div>
                             <div class="fw-semibold text-dark" style="font-size:.87rem">Sin intermediarios</div>
@@ -437,7 +467,7 @@
                     </li>
                     <li class="d-flex align-items-start gap-3">
                         <div class="svc-icon flex-shrink-0" style="background:#ede9fe">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2.5" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+                            <i class="fa-solid fa-check" aria-hidden="true" style="color:#7c3aed"></i>
                         </div>
                         <div>
                             <div class="fw-semibold text-dark" style="font-size:.87rem">Cobertura en todo Chile</div>
@@ -461,7 +491,7 @@
             <div class="col-sm-6 col-lg-3 fade-up">
                 <div class="diff-card">
                     <div class="diff-icon" style="background:#dbeafe">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" aria-hidden="true"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                        <i class="fa-solid fa-user-tie" aria-hidden="true" style="color:#1d4ed8"></i>
                     </div>
                     <h3 class="fw-bold mb-1" style="font-size:.9rem">Asistencia directa de asesor</h3>
                     <p class="text-secondary mb-0" style="font-size:.82rem; line-height:1.65">Cada trámite cuenta con revisión legal del asesor. Sin formularios genéricos ni plantillas predeterminadas del portal.</p>
@@ -470,7 +500,7 @@
             <div class="col-sm-6 col-lg-3 fade-up">
                 <div class="diff-card">
                     <div class="diff-icon" style="background:#dcfce7">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" aria-hidden="true"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+                        <i class="fa-solid fa-list-check" aria-hidden="true" style="color:#16a34a"></i>
                     </div>
                     <h3 class="fw-bold mb-1" style="font-size:.9rem">Ambas modalidades disponibles</h3>
                     <p class="text-secondary mb-0" style="font-size:.82rem; line-height:1.65">Empresa en un Día (Ley N°20.659) o método tradicional con notaría y CBR. El asesor evalúa cuál conviene según el caso.</p>
@@ -479,7 +509,7 @@
             <div class="col-sm-6 col-lg-3 fade-up">
                 <div class="diff-card">
                     <div class="diff-icon" style="background:#fef3c7">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+                        <i class="fa-solid fa-clock" aria-hidden="true" style="color:#b45309"></i>
                     </div>
                     <h3 class="fw-bold mb-1" style="font-size:.9rem">Tramitación integral</h3>
                     <p class="text-secondary mb-0" style="font-size:.82rem; line-height:1.65">Desde la redacción del estatuto hasta la inscripción final. El cliente no gestiona nada por separado.</p>
@@ -488,7 +518,7 @@
             <div class="col-sm-6 col-lg-3 fade-up">
                 <div class="diff-card">
                     <div class="diff-icon" style="background:#ede9fe">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0110 0v4"/></svg>
+                        <i class="fa-solid fa-shield-halved" aria-hidden="true" style="color:#7c3aed"></i>
                     </div>
                     <h3 class="fw-bold mb-1" style="font-size:.9rem">Seguridad jurídica desde el inicio</h3>
                     <p class="text-secondary mb-0" style="font-size:.82rem; line-height:1.65">Un estatuto mal redactado cuesta más corregirlo que hacerlo bien desde el principio. La asesoría previene problemas futuros.</p>
@@ -654,7 +684,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#dbeafe">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#1d4ed8" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                            <i class="fa-regular fa-file-lines" aria-hidden="true" style="color:#1d4ed8"></i>
                         </div>
                         <span class="badge bg-primary bg-opacity-10 text-primary fw-semibold mb-2 align-self-start" style="font-size:.63rem; letter-spacing:.05em">Empresa en un Día</span>
                         <h3 class="h6 fw-bold text-dark mb-2">Redacción de Estatutos SpA / EIRL</h3>
@@ -668,7 +698,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#dcfce7">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+                            <i class="fa-solid fa-building-columns" aria-hidden="true" style="color:#16a34a"></i>
                         </div>
                         <span class="badge bg-success bg-opacity-10 text-success fw-semibold mb-2 align-self-start" style="font-size:.63rem; letter-spacing:.05em">Gestión completa</span>
                         <h3 class="h6 fw-bold text-dark mb-2">Constitución SpA, LTDA y EIRL</h3>
@@ -682,7 +712,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#fef3c7">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#b45309" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+                            <i class="fa-solid fa-magnifying-glass" aria-hidden="true" style="color:#b45309"></i>
                         </div>
                         <span class="badge bg-warning bg-opacity-25 text-warning-emphasis fw-semibold mb-2 align-self-start" style="font-size:.63rem; letter-spacing:.05em">Alta demanda</span>
                         <h3 class="h6 fw-bold text-dark mb-2">Estudio de Títulos</h3>
@@ -696,7 +726,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#ede9fe">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#7c3aed" stroke-width="2" aria-hidden="true"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                            <i class="fa-solid fa-file-pen" aria-hidden="true" style="color:#7c3aed"></i>
                         </div>
                         <h3 class="h6 fw-bold text-dark mb-2">Revisión de Contratos</h3>
                         <p class="text-secondary flex-grow-1 mb-3" style="font-size:.82rem; line-height:1.65">Análisis jurídico de contratos de compraventa, arrendamiento y contratos comerciales. Identificación de cláusulas abusivas, riesgos jurídicos y vacíos. Informe en 24 a 48 horas hábiles.</p>
@@ -709,7 +739,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#fff1f2">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#e11d48" stroke-width="2" aria-hidden="true"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/></svg>
+                            <i class="fa-solid fa-people-roof" aria-hidden="true" style="color:#e11d48"></i>
                         </div>
                         <h3 class="h6 fw-bold text-dark mb-2">Posesión Efectiva</h3>
                         <p class="text-secondary flex-grow-1 mb-3" style="font-size:.82rem; line-height:1.65">Tramitación del proceso sucesorio: solicitud ante el Registro Civil o tribunal, inventario de bienes, pago del impuesto de herencia e inscripción de inmuebles en el Conservador.</p>
@@ -722,7 +752,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#f0fdf4">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2" aria-hidden="true"><path d="M20.24 12.24a6 6 0 00-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/></svg>
+                            <i class="fa-solid fa-pen-nib" aria-hidden="true" style="color:#16a34a"></i>
                         </div>
                         <h3 class="h6 fw-bold text-dark mb-2">Poderes y Escrituras Públicas</h3>
                         <p class="text-secondary flex-grow-1 mb-3" style="font-size:.82rem; line-height:1.65">Redacción de poderes notariales generales y especiales, y escrituras públicas para personas naturales y jurídicas. Documento listo para suscripción ante notario.</p>
@@ -735,7 +765,7 @@
                 <div class="card h-100 border shadow-sm rounded-3 bg-white card-lift">
                     <div class="card-body d-flex flex-column p-4">
                         <div class="svc-icon mb-3" style="background:#e0f2fe">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0369a1" stroke-width="2" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+                            <i class="fa-solid fa-shield-halved" aria-hidden="true" style="color:#0369a1"></i>
                         </div>
                         <span class="badge fw-semibold mb-2 align-self-start" style="font-size:.63rem; letter-spacing:.05em; background:#e0f2fe; color:#0369a1">Ley N°19.799</span>
                         <h3 class="h6 fw-bold text-dark mb-2">Contratos con Firma Electrónica Avanzada</h3>
@@ -758,11 +788,16 @@
                 <h2 class="section-heading text-dark mb-3">Lo que más nos consultan</h2>
                 <p class="text-secondary mb-4" style="font-size:.88rem; line-height:1.7">Para consultas específicas sobre su situación, el asesor responde directamente por WhatsApp.</p>
                 <a href="https://wa.me/56974510669?text=Tengo%20una%20consulta%20legal" class="btn btn-wa fw-semibold" target="_blank" rel="noopener">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" class="me-2" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.8-6.36-2.147l-.444-.347-3.09 1.036 1.036-3.09-.347-.444A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+                    <i class="fa-brands fa-whatsapp me-2" aria-hidden="true"></i>
                     Consultar al asesor
                 </a>
             </div>
             <div class="col-lg-8">
+                <div class="faq-search-wrap mb-3">
+                    <i class="fa-solid fa-magnifying-glass" aria-hidden="true"></i>
+                    <input type="search" id="faqSearch" class="form-control" placeholder="Buscar en preguntas frecuentes…" aria-label="Buscar preguntas frecuentes">
+                </div>
+                <div id="faqNoResults">No se encontraron preguntas con ese término.</div>
                 <div class="accordion" id="faqAccordion">
 
                     <div class="accordion-item border rounded-3 mb-2">
@@ -882,7 +917,7 @@
         <h2 class="text-white fw-bold mb-3" style="font-size:clamp(1.6rem,3vw,2rem); letter-spacing:-.025em">¿Necesita constituir una empresa o resolver un asunto inmobiliario?</h2>
         <p class="mb-4" style="color:#64748b; font-size:.9rem; line-height:1.75">Contacte directamente al asesor para aclarar su caso, conocer la modalidad más conveniente y dar el primer paso.</p>
         <a href="https://wa.me/56974510669?text=Hola%2C%20quiero%20asesor%C3%ADa%20legal" class="btn btn-wa btn-lg px-5 fw-semibold" target="_blank" rel="noopener">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" class="me-2" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.8-6.36-2.147l-.444-.347-3.09 1.036 1.036-3.09-.347-.444A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+            <i class="fa-brands fa-whatsapp me-2" aria-hidden="true" style="font-size:1.1em"></i>
             Iniciar consulta por WhatsApp
         </a>
     </div>
@@ -924,83 +959,226 @@
 
 <!-- BOTÓN FLOTANTE WHATSAPP -->
 <a href="https://wa.me/56974510669?text=Hola%2C%20quiero%20asesor%C3%ADa%20legal" class="wa-float" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
-    <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.8-6.36-2.147l-.444-.347-3.09 1.036 1.036-3.09-.347-.444A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+    <i class="fa-brands fa-whatsapp" aria-hidden="true" style="font-size:1.5rem; color:#fff; line-height:1"></i>
 </a>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 <script>
-// Navbar: sombra en scroll
-const navbar = document.querySelector('.navbar');
-window.addEventListener('scroll', () => {
-    navbar.classList.toggle('nav-scrolled', window.scrollY > 40);
-}, { passive: true });
+(() => {
+    'use strict';
 
-// Fade-up escalonado: observa la fila y dispara hijos en cadena
-const io = new IntersectionObserver(entries => {
-    entries.forEach(e => {
-        if (!e.isIntersecting) return;
-        const el = e.target;
-        if (el.classList.contains('row')) {
-            el.querySelectorAll('.fade-up').forEach((child, i) => {
-                setTimeout(() => child.classList.add('visible'), i * 90);
+    // ── Constantes ────────────────────────────────
+    const SCROLL_THRESHOLD = 40;
+    const STAGGER_DELAY    = 90;
+    const OBSERVER_OPTS    = { threshold: 0.06 };
+    const SPY_OPTS         = { rootMargin: '-25% 0px -65% 0px' };
+
+    // ── Selectores helpers ────────────────────────
+    const $  = (sel, ctx = document) => ctx.querySelector(sel);
+    const $$ = (sel, ctx = document) => [...ctx.querySelectorAll(sel)];
+
+    // ── Navbar: sombra en scroll ──────────────────
+    const initNavbar = () => {
+        const nav = $('.navbar');
+        window.addEventListener('scroll', () =>
+            nav?.classList.toggle('nav-scrolled', window.scrollY > SCROLL_THRESHOLD),
+            { passive: true }
+        );
+    };
+
+    // ── Barra de progreso de lectura ──────────────
+    const initProgress = () => {
+        const bar = $('#reading-progress');
+        if (!bar) return;
+        window.addEventListener('scroll', () => {
+            const max = document.documentElement.scrollHeight - innerHeight;
+            bar.style.width = `${Math.min((scrollY / max) * 100, 100)}%`;
+        }, { passive: true });
+    };
+
+    // ── Fade-up escalonado ────────────────────────
+    const initFadeUp = () => {
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(({ isIntersecting, target }) => {
+                if (!isIntersecting) return;
+                const children = target.classList.contains('row')
+                    ? $$('.fade-up', target)
+                    : [target];
+                children.forEach((el, i) =>
+                    setTimeout(() => el.classList.add('visible'), i * STAGGER_DELAY)
+                );
+                io.unobserve(target);
             });
-        } else {
-            el.classList.add('visible');
-        }
-        io.unobserve(el);
-    });
-}, { threshold: 0.06 });
+        }, OBSERVER_OPTS);
 
-// Filas con hijos animados
-document.querySelectorAll('.row').forEach(row => {
-    if (row.querySelector('.fade-up')) io.observe(row);
-});
-// Elementos fade-up fuera de .row (ej: tabla comparativa)
-document.querySelectorAll('.fade-up').forEach(el => {
-    if (!el.closest('.row')) io.observe(el);
-});
+        $$('.row').forEach(row => { if ($('.fade-up', row)) io.observe(row); });
+        $$('.fade-up').forEach(el => { if (!el.closest('.row')) io.observe(el); });
+    };
 
-// Barra de progreso de lectura
-const progressEl = document.getElementById('reading-progress');
-window.addEventListener('scroll', () => {
-    const scrolled = window.scrollY;
-    const total = document.documentElement.scrollHeight - window.innerHeight;
-    progressEl.style.width = (scrolled / total * 100) + '%';
-}, { passive: true });
-
-// Scrollspy: resalta el nav link de la sección visible
-const spySections = document.querySelectorAll('section[id]');
-const spyLinks = document.querySelectorAll('.nav-link[href^="#"]');
-const spyObs = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            spyLinks.forEach(link => {
-                const match = link.getAttribute('href') === '#' + entry.target.id;
-                link.classList.toggle('spy-active', match);
+    // ── Scrollspy ─────────────────────────────────
+    const initScrollspy = () => {
+        const sections = $$('section[id]');
+        const links    = $$('.nav-link[href^="#"]');
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(({ isIntersecting, target }) => {
+                if (!isIntersecting) return;
+                links.forEach(l =>
+                    l.classList.toggle('spy-active', l.getAttribute('href') === `#${target.id}`)
+                );
             });
-        }
-    });
-}, { rootMargin: '-25% 0px -65% 0px' });
-spySections.forEach(s => spyObs.observe(s));
+        }, SPY_OPTS);
+        sections.forEach(s => io.observe(s));
+    };
 
-// CTA sticky mobile: aparece al salir del hero
-const mobileCTA = document.getElementById('mobileCTA');
-const heroSection = document.getElementById('inicio');
-if (mobileCTA && heroSection) {
-    window.addEventListener('scroll', () => {
-        const past = heroSection.getBoundingClientRect().bottom < 0;
-        mobileCTA.classList.toggle('active', past);
-        mobileCTA.setAttribute('aria-hidden', past ? 'false' : 'true');
-    }, { passive: true });
-}
+    // ── CTA sticky mobile ─────────────────────────
+    const initMobileCTA = () => {
+        const bar  = $('#mobileCTA');
+        const hero = $('#inicio');
+        if (!bar || !hero) return;
+        window.addEventListener('scroll', () => {
+            const past = hero.getBoundingClientRect().bottom < 0;
+            bar.classList.toggle('active', past);
+            bar.setAttribute('aria-hidden', String(!past));
+        }, { passive: true });
+    };
+
+    // ── Contadores animados ───────────────────────
+    const easeOutCubic = t => 1 - (1 - t) ** 3;
+
+    const animateCounter = el => {
+        const target   = +el.dataset.target;
+        const duration = 1600;
+        const start    = performance.now();
+        const tick = now => {
+            const p = Math.min((now - start) / duration, 1);
+            el.textContent = Math.round(easeOutCubic(p) * target).toLocaleString('es-CL');
+            if (p < 1) requestAnimationFrame(tick);
+        };
+        requestAnimationFrame(tick);
+    };
+
+    const initCounters = () => {
+        const els = $$('[data-counter]');
+        if (!els.length) return;
+        const io = new IntersectionObserver(entries => {
+            entries.forEach(({ isIntersecting, target }) => {
+                if (!isIntersecting) return;
+                animateCounter(target);
+                io.unobserve(target);
+            });
+        }, { threshold: 0.5 });
+        els.forEach(el => io.observe(el));
+    };
+
+    // ── Búsqueda en FAQ ───────────────────────────
+    const initFaqSearch = () => {
+        const input    = $('#faqSearch');
+        const noResult = $('#faqNoResults');
+        if (!input) return;
+        const items = $$('.accordion-item', $('#faqAccordion'));
+
+        input.addEventListener('input', ({ target: { value } }) => {
+            const q = value.toLowerCase().trim();
+            let found = 0;
+            items.forEach(item => {
+                const visible = !q || item.textContent.toLowerCase().includes(q);
+                item.style.display = visible ? '' : 'none';
+                if (visible) found++;
+            });
+            if (noResult) noResult.style.display = found ? 'none' : 'block';
+        });
+    };
+
+    // ── Toast WhatsApp ────────────────────────────
+    const showWAToast = () => {
+        const id = 'wa-toast';
+        document.getElementById(id)?.remove();
+
+        const el = Object.assign(document.createElement('div'), { id });
+        el.innerHTML = '<i class="fa-brands fa-whatsapp me-2"></i>Abriendo WhatsApp…';
+        Object.assign(el.style, {
+            position:      'fixed',
+            bottom:        '5rem',
+            left:          '50%',
+            transform:     'translateX(-50%) translateY(10px)',
+            background:    '#25d366',
+            color:         '#fff',
+            padding:       '.55rem 1.2rem',
+            borderRadius:  '2rem',
+            fontSize:      '.8rem',
+            fontWeight:    '600',
+            zIndex:        '9999',
+            boxShadow:     '0 4px 20px rgba(0,0,0,.2)',
+            opacity:       '0',
+            transition:    'opacity .28s, transform .28s',
+            whiteSpace:    'nowrap',
+            pointerEvents: 'none',
+        });
+        document.body.appendChild(el);
+        requestAnimationFrame(() => {
+            el.style.opacity   = '1';
+            el.style.transform = 'translateX(-50%) translateY(0)';
+        });
+        setTimeout(() => {
+            el.style.opacity   = '0';
+            el.style.transform = 'translateX(-50%) translateY(10px)';
+            setTimeout(() => el.remove(), 300);
+        }, 2400);
+    };
+
+    const initWAToast = () =>
+        $$('a[href*="wa.me"]').forEach(a => a.addEventListener('click', showWAToast));
+
+    // ── Back to top ───────────────────────────────
+    const initBackToTop = () => {
+        const btn = $('#backToTop');
+        if (!btn) return;
+        window.addEventListener('scroll', () =>
+            btn.classList.toggle('visible', scrollY > 500),
+            { passive: true }
+        );
+        btn.addEventListener('click', () =>
+            window.scrollTo({ top: 0, behavior: 'smooth' })
+        );
+    };
+
+    // ── Cerrar menú mobile al hacer clic en nav-link ─
+    const initNavCollapse = () => {
+        const collapseEl = $('#navMenu');
+        if (!collapseEl) return;
+        const bsCollapse = bootstrap.Collapse.getOrCreateInstance(collapseEl, { toggle: false });
+        $$('.nav-link', collapseEl).forEach(link =>
+            link.addEventListener('click', () => bsCollapse.hide())
+        );
+    };
+
+    // ── Init ──────────────────────────────────────
+    document.addEventListener('DOMContentLoaded', () => {
+        initNavbar();
+        initProgress();
+        initFadeUp();
+        initScrollspy();
+        initMobileCTA();
+        initCounters();
+        initFaqSearch();
+        initWAToast();
+        initBackToTop();
+        initNavCollapse();
+    });
+})();
 </script>
 <!-- STICKY CTA MOBILE -->
 <div class="mobile-cta-bar" id="mobileCTA" aria-hidden="true">
     <a href="https://wa.me/56974510669?text=Hola%2C%20quiero%20asesor%C3%ADa%20legal" class="btn btn-wa w-100 py-2 fw-semibold d-flex align-items-center justify-content-center gap-2" target="_blank" rel="noopener">
-        <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/><path d="M12 0C5.373 0 0 5.373 0 12c0 2.625.846 5.059 2.284 7.034L.789 23.492a.5.5 0 00.613.613l4.458-1.495A11.952 11.952 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 22c-2.387 0-4.592-.8-6.36-2.147l-.444-.347-3.09 1.036 1.036-3.09-.347-.444A9.935 9.935 0 012 12C2 6.477 6.477 2 12 2s10 4.477 10 10-4.477 10-10 10z"/></svg>
+        <i class="fa-brands fa-whatsapp" aria-hidden="true" style="font-size:1.05rem"></i>
         Solicitar asesoría
     </a>
 </div>
+
+<!-- BACK TO TOP -->
+<button id="backToTop" aria-label="Volver al inicio">
+    <i class="fa-solid fa-arrow-up" aria-hidden="true" style="font-size:.85rem"></i>
+</button>
 
 </body>
 </html>
