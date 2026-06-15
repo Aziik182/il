@@ -403,8 +403,12 @@
             .accordion-body,
             .step-block p {
                 text-align: justify;
+                text-align-last: left;   /* última línea no se estira */
                 hyphens: auto;
                 -webkit-hyphens: auto;
+                word-break: normal;
+                overflow-wrap: break-word;
+                text-wrap: unset;        /* evita conflicto con text-wrap:pretty */
             }
         }
 
